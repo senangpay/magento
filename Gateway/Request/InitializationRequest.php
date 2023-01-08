@@ -42,22 +42,6 @@ class InitializationRequest implements BuilderInterface
             return false;
         }
 
-        $this->_logger->debug(['[InitializationRequest][validateQuote]$this->_gatewayConfig->getSpecificCountry():' . ($this->_gatewayConfig->getSpecificCountry())]);
-        $allowedCountriesArray = explode(',', $this->_gatewayConfig->getSpecificCountry());
-
-        $this->_logger->debug(['[InitializationRequest][validateQuote]$order->getBillingAddress()->getCountryId():' . ($order->getBillingAddress()->getCountryId())]);
-        if (!in_array($order->getBillingAddress()->getCountryId(), $allowedCountriesArray)) {
-            $this->_logger->debug(['[InitializationRequest][validateQuote]Country is not in array']);
-            $this->_session->setSenangpayErrorMessage(__('Orders from this country are not supported by senangPay. Please select a different payment option.'));
-            return false;
-        }
-
-        $this->_logger->debug(['[InitializationRequest][validateQuote]$order->getShippingAddress()->getCountryId():' . ($order->getShippingAddress()->getCountryId())]);
-        if (!in_array($order->getShippingAddress()->getCountryId(), $allowedCountriesArray)) {
-            $this->_session->setSenangpayErrorMessage(__('Orders shipped to this country are not supported by senangPay. Please select a different payment option.'));
-            return false;
-        }
-
         return true;
     }
 
