@@ -44,8 +44,8 @@ class Index extends AbstractAction
 
         $is_staging = $gatewayConf->getIsSandbox() == 1 ? true : false;
         $senangpay = new SenangpayApi(
-            trim($gatewayConf->getSecretKey()),
             trim($gatewayConf->getMerchantId()),
+            trim($gatewayConf->getSecretKey()),
             $is_staging,
             $parameter
         );
